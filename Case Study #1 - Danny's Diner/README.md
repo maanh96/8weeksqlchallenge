@@ -10,8 +10,6 @@ Danny opens up a cute little restaurant that sells his 3 favourite foods: sushi,
 
 ![image](https://user-images.githubusercontent.com/58045173/184397246-d566db15-3760-46fb-a304-a7c93ba48521.png)
 
-<br>
-
 Dataset for this case study include:
 * `sales`: captures all customer_id level purchases with an corresponding order_date and product_id information for when and what menu items were ordered
 * `menu`: maps the product_id to the actual product_name and price of each menu item
