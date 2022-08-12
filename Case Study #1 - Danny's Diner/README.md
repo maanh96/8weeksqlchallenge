@@ -8,7 +8,7 @@ Danny opens up a cute little restaurant that sells his 3 favourite foods: sushi,
 
 ## Example Datasets
 
-![image](https://user-images.githubusercontent.com/58045173/184396547-49607ccc-9ad5-4efa-869a-7d7e4abe65d4.png)
+![image](https://user-images.githubusercontent.com/58045173/184397246-d566db15-3760-46fb-a304-a7c93ba48521.png)
 
 <br>
 
