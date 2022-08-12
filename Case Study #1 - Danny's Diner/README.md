@@ -6,7 +6,7 @@ View full case study [here](https://8weeksqlchallenge.com/case-study-1/)
 ## Introduction
 Danny opens up a cute little restaurant that sells his 3 favourite foods: sushi, curry and ramen. He is in need of your assistance to  answer a few simple questions about his customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite.
 
-## Example Datasets
+## Datasets
 
 ![image](https://user-images.githubusercontent.com/58045173/184397246-d566db15-3760-46fb-a304-a7c93ba48521.png)
 
