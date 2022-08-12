@@ -1,15 +1,7 @@
 # Case Study #1 - Danny's Diner
-<img src="https://8weeksqlchallenge.com/images/case-study-designs/1.png" width="400">
-
-View full case study [here](https://8weeksqlchallenge.com/case-study-1/)
-
-## Introduction
-Danny opens up a cute little restaurant that sells his 3 favourite foods: sushi, curry and ramen. He is in need of your assistance to  answer a few simple questions about his customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite.
-### Entity Relationship Diagram
-<img src="https://dbdiagram.io/embed/608d07e4b29a09603d12edbd" width="400">
-<br>
 
 ## Case Study Questions
+
 ### 1. What is the total amount each customer spent at the restaurant?
 
 ```sql
