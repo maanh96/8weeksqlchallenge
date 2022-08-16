@@ -4,16 +4,16 @@
 View full case study [here](https://8weeksqlchallenge.com/case-study-1/)
 
 ## Introduction
-Danny opens up a cute little restaurant that sells his 3 favourite foods: sushi, curry and ramen. He is in need of your assistance to  answer a few simple questions about his customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite.
+Danny opens up a cute little restaurant that sells his 3 favourite foods: sushi, curry and ramen. He is in need of our assistance to  answer a few simple questions about his customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite.
 
 ## Datasets
 
 ![image](https://user-images.githubusercontent.com/58045173/184476035-06f9e40b-022f-4339-ba81-7f77e78c57c2.png)
 
 Dataset for this case study include:
-* `sales`: captures all customer_id level purchases with an corresponding order_date and product_id information for when and what menu items were ordered
-* `menu`: maps the product_id to the actual product_name and price of each menu item
-* `members`: captures the join_date when a customer_id joined the beta version of the Danny’s Diner loyalty program
+* `sales`: captures all `customer_id` level purchases with an corresponding `order_date` and `product_id` information for when and what menu items were ordered
+* `menu`: maps the `product_id` to the actual `product_name` and price of each menu item
+* `members`: captures the `join_date` when a `customer_id` joined the beta version of the Danny’s Diner loyalty program
 
 View SQL schema file [here](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/Schema.sql) 
 
