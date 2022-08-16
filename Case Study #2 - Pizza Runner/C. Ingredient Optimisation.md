@@ -295,4 +295,4 @@ Result:
 <br>
 
 ***
-Let's move to [D. Pricing and Ratings](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/D.%20Pricing%20and%20Ratings%20%26%20E.%20Bonus%20Questions.md).
+Let's move to [D. Pricing and Ratings](./D.%20Pricing%20and%20Ratings%20%26%20E.%20Bonus%20Questions.md).

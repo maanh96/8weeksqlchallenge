@@ -197,4 +197,4 @@ Result:
 <br>
 
 ***
-Let's move to [B. Runner and Customer Experience](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/B.%20Runner%20and%20Customer%20Experience.md).
+Let's move to [B. Runner and Customer Experience](./B.%20Runner%20and%20Customer%20Experience.md).
