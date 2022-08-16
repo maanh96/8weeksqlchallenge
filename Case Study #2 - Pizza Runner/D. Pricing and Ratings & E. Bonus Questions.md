@@ -1,6 +1,6 @@
 # Case Study #2 - Pizza Runner
 
-### D. Pricing and Ratings - [Solution]()
+### D. Pricing and Ratings
 ### 1. If a Meat Lovers pizza costs $12 and Vegetarian costs $10 and there were no charges for changes - how much money has Pizza Runner made so far if there are no delivery fees?
 ```sql
 SELECT 
@@ -176,3 +176,8 @@ Result:
 | 1        | Meatlovers | 1, 2, 3, 4, 5, 6, 8, 10               |
 | 2        | Vegetarian | 4, 6, 7, 9, 11, 12                    |
 | 3        | Supreme    | 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 |
+
+<br>
+
+***
+Back to [Main menu](https://github.com/maanh96/8weeksqlchallenge).

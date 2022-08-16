@@ -362,3 +362,8 @@ Result:
 | C           | 2021-01-01 | ramen        | 12    | N      |         |
 | C           | 2021-01-01 | ramen        | 12    | N      |         |
 | C           | 2021-01-07 | ramen        | 12    | N      |         |
+
+<br>
+
+***
+Back to [Main menu](https://github.com/maanh96/8weeksqlchallenge).

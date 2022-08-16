@@ -1,6 +1,6 @@
 # Case Study #2 - Pizza Runner
 
-## C. Ingredient 
+## C. Ingredient Optimisation 
 ### 1. What are the standard ingredients for each pizza?
 ```sql
 -- in order to join with other table we will create a pizza_receipes_temp table to convert toppings to long format
