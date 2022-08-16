@@ -160,7 +160,7 @@ GROUP BY day_of_week
 ORDER BY day_of_week;
 
 -- B. Runner and Customer Experience --
-
+-- 1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
 SELECT 
     WEEK(registration_date) AS registration_week,
     COUNT(*) AS total_runner
@@ -193,7 +193,8 @@ WITH cte AS(
 		ON r.order_id = c.order_id
 	WHERE cancellation IS NULL
 	GROUP BY r.order_id)
-SELECT pizza_delivered, ROUND(AVG(prep_time), 2) AS avg_prep_time
+SELECT pizza_delivered, ROUND(AVG(prep_time), 2) AS avg_prep_time, 
+	ROUND(AVG(prep_time)/pizza_delivered, 2) AS avg_prep_time_per_pizza
 FROM cte
 GROUP BY pizza_delivered;
 
@@ -251,6 +252,8 @@ INNER JOIN JSON_TABLE(
 	REPLACE(json_array(p.toppings), ', ', '","'),
 	'$[*]' COLUMNS (toppings VARCHAR(50) PATH '$')
 ) AS j;
+SELECT * FROM pizza_recipes_temp;
+
 	-- from pizza_recipes_temp inner join with pizza_names and pizza_toppings to get name of pizza and toppings
 SELECT 
     pizza_name,
@@ -277,6 +280,7 @@ INNER JOIN JSON_TABLE(
 	REPLACE(json_array(c.extras), ', ', '","'),
 	'$[*]' COLUMNS (extras VARCHAR(50) PATH '$')
 ) AS j;
+SELECT * FROM extras_temp;
 	-- from extras_temp join with pizza_toppings to get toppings' name
 SELECT 
     topping_name, COUNT(*) AS add_count
@@ -289,7 +293,7 @@ ORDER BY add_count DESC
 LIMIT 1;
 
 -- 3. What was the most common exclusion?
--- in order to join with other table we will create an exclusions_temp table
+	-- in order to join with other table we will create an exclusions_temp table
 DROP TABLE IF EXISTS exclusions_temp;
 CREATE TEMPORARY TABLE exclusions_temp
 SELECT c.record_id, j.exclusions
@@ -377,7 +381,7 @@ FROM cte
 GROUP BY record_id;
 
 -- 6. What is the total quantity of each ingredient used in all delivered pizzas sorted by most frequent first?
--- from customer_orders_temp create a cte table that:
+	-- from customer_orders_temp create a cte table that:
         -- inner join pizza_recipes_temp to get list of ingredient
         -- inner join pizza_toppings to get toppings name
         -- use case create topping_used column for each toppings in case of none (1), exclusion (0), extra (2)
@@ -407,7 +411,7 @@ GROUP BY topping_name
 ORDER BY total_quantity DESC;
 
 -- D. Pricing and Ratings --
-
+-- 1. If a Meat Lovers pizza costs $12 and Vegetarian costs $10 and there were no charges for changes - how much money has Pizza Runner made so far if there are no delivery fees?
 SELECT 
     SUM(CASE
         WHEN pizza_id = 1 THEN 12
@@ -464,10 +468,7 @@ VALUES
 	(8, 5, 'Fast'),
 	(10, 5, NULL);
 
-SELECT 
-    *
-FROM
-    runner_ratings;
+SELECT * FROM runner_ratings;
 
 -- 4. Using your newly generated table - can you join all of the information together to form a table which has the following information for successful deliveries? customer_id; order_id; runner_id; rating; order_time; pickup_time; Time between order and pickup; Delivery duration; Average speed; Total number of pizzas
 SELECT 
@@ -510,8 +511,10 @@ INSERT INTO pizza_names VALUES(3, 'Supreme');
 	-- insert into pizza_recipes
 INSERT INTO pizza_recipes
 VALUES (3, (SELECT GROUP_CONCAT(topping_id SEPARATOR ', ') FROM pizza_toppings));
-
+	-- show new pizza tables
 SELECT 
-    *
+    r.pizza_id, pizza_name, toppings
 FROM
-    pizza_recipes;
+    pizza_recipes r
+        INNER JOIN
+    pizza_names p ON r.pizza_id = p.pizza_id;

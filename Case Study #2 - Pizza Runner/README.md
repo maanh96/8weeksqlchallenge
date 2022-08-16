@@ -18,12 +18,12 @@ Dataset for this case study include:
 * `pizza_recipes`: `pizza_id` has a standard set of `toppings` which are used as part of the pizza recipe
 * `pizza_toppings`: contains all of the `topping_name` values with their corresponding `topping_id` value
 
-View SQL schema file [here]() 
+View SQL schema file [here](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/Schema.sql) 
 
 ## Case Study Questions
-Before writing SQL queries we will need to clean the data in the `customer_orders` and `runner_orders` tables: [Data cleaning]().
+Before writing SQL queries we will need to clean the data in the `customer_orders` and `runner_orders` tables: [Data cleaning](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/0.%20Data%20cleaning.md).
 
-### A. Pizza Metrics - [Solution]()
+### A. Pizza Metrics - [Solution](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/A.%20Pizza%20Metrics.md)
 <ol>
   <li>How many pizzas were ordered?</li>
   <li>How many unique customer orders were made?</li>
@@ -37,7 +37,7 @@ Before writing SQL queries we will need to clean the data in the `customer_order
   <li>What was the volume of orders for each day of the week?</li>
 </ol>
 
-### B. Runner and Customer Experience - [Solution]()
+### B. Runner and Customer Experience - [Solution](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/B.%20Runner%20and%20Customer%20Experience.md)
 <ol>
   <li>How many runners signed up for each 1 week period? (i.e. week starts <code>2021-01-01</code>)</li>
   <li>What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?</li>
@@ -48,7 +48,7 @@ Before writing SQL queries we will need to clean the data in the `customer_order
   <li>What is the successful delivery percentage for each runner?</li>
 </ol>
 
-### C. Ingredient Optimisation - [Solution]()
+### C. Ingredient Optimisation - [Solution](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/C.%20Ingredient%20Optimisation.md)
 <ol>
   <li>What are the standard ingredients for each pizza?</li>
   <li>What was the most commonly added extra?</li>
@@ -69,7 +69,7 @@ Before writing SQL queries we will need to clean the data in the `customer_order
   <li>What is the total quantity of each ingredient used in all delivered pizzas sorted by most frequent first?</li>
 </ol>
 
-### D. Pricing and Ratings - [Solution]()
+### D. Pricing and Ratings - [Solution](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/D.%20Pricing%20and%20Ratings%20%26%20E.%20Bonus%20Questions.md)
 <ol>
   <li>If a Meat Lovers pizza costs $12 and Vegetarian costs $10 and there were no charges for changes - how much money has Pizza Runner made so far if there are no delivery fees?</li>
   <li>What if there was an additional $1 charge for any pizza extras?
@@ -96,9 +96,9 @@ Before writing SQL queries we will need to clean the data in the `customer_order
 </ol>
 
 
-### E. Bonus Questions - [Solution]()
+### E. Bonus Questions - [Solution](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/D.%20Pricing%20and%20Ratings%20%26%20E.%20Bonus%20Questions.md)
 If Danny wants to expand his range of pizzas - how would this impact the existing data design? Write an <code>INSERT</code> statement to demonstrate what would happen if a new <code>Supreme</code> pizza with all the toppings was added to the Pizza Runner menu?
 
 <br>
 
-View full SQL query file [here]().
+View full SQL query file [here](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/Query.sql).

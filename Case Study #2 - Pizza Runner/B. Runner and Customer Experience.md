@@ -149,4 +149,4 @@ Result:
 <br>
 
 ***
-Let's move to [C. Ingredient Optimisation]()
+Let's move to [C. Ingredient Optimisation](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/C.%20Ingredient%20Optimisation.md).
