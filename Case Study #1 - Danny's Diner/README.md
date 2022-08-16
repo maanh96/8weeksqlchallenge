@@ -15,7 +15,7 @@ Dataset for this case study include:
 * `menu`: maps the `product_id` to the actual `product_name` and price of each menu item
 * `members`: captures the `join_date` when a `customer_id` joined the beta version of the Danny’s Diner loyalty program
 
-View SQL schema file [here](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/Schema.sql) 
+View SQL schema file [here](./Schema.sql) 
 
 ## Case Study Questions
 Each of the following case study questions can be answered using a single SQL statement:
@@ -35,4 +35,4 @@ Each of the following case study questions can be answered using a single SQL st
 
 <br>
 
-View my solution [here](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/Answer.md) or SQL query file [here](https://github.com/maanh96/8weeksqlchallenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/Query.sql).
+View my solution [here](./Answer.md) or SQL query file [here](./Query.sql).

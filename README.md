@@ -11,6 +11,6 @@ Each case study folder contains:
 Note: Solutions are coded in **MySQL 8.0**.
 
 ## Case studies
-[Case Study #1 - Danny's Diner](https://github.com/maanh96/8weeksqlchallenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner)
+[Case Study #1 - Danny's Diner](./Case%20Study%20%231%20-%20Danny's%20Diner)
 
-[Case Study #2 - Pizza Runner](https://github.com/maanh96/8weeksqlchallenge/tree/main/Case%20Study%20%232%20-%20Pizza%20Runner)
+[Case Study #2 - Pizza Runner](./Case%20Study%20%232%20-%20Pizza%20Runner)
