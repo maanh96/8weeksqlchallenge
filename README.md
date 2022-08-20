@@ -13,9 +13,10 @@ Note: Solutions are coded in **MySQL 8.0**.
 ## Case studies
 
 <br>
-<img src='https://8weeksqlchallenge.com/images/case-study-designs/1.png' width='120'><img src='https://8weeksqlchallenge.com/images/case-study-designs/2.png' width='120'><img src='https://8weeksqlchallenge.com/images/case-study-designs/3.png' width='120'><img src='https://8weeksqlchallenge.com/images/case-study-designs/4.png' width='120'>
+
+<img src='https://8weeksqlchallenge.com/images/case-study-designs/1.png' width='150'><img src='https://8weeksqlchallenge.com/images/case-study-designs/2.png' width='150'><img src='https://8weeksqlchallenge.com/images/case-study-designs/3.png' width='150'><img src='https://8weeksqlchallenge.com/images/case-study-designs/4.png' width='150'>
     
-<img src='https://8weeksqlchallenge.com/images/case-study-designs/5.png'  width='120'><img src='https://8weeksqlchallenge.com/images/case-study-designs/6.png' width='120'><img src='https://8weeksqlchallenge.com/images/case-study-designs/7.png' width='120'><img src='https://8weeksqlchallenge.com/images/case-study-designs/8.png' width='120'>
+<img src='https://8weeksqlchallenge.com/images/case-study-designs/5.png'  width='150'><img src='https://8weeksqlchallenge.com/images/case-study-designs/6.png' width='150'><img src='https://8weeksqlchallenge.com/images/case-study-designs/7.png' width='150'><img src='https://8weeksqlchallenge.com/images/case-study-designs/8.png' width='150'>
     
 <br>
 
