@@ -12,11 +12,9 @@ Note: Solutions are coded in **MySQL 8.0**.
 
 ## Case studies
 
-<br>
 
 <img src='https://8weeksqlchallenge.com/images/case-study-designs/1.png' width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/2.png' width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/3.png' width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/4.png' width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/5.png'  width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/6.png' width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/7.png' width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/8.png' width='23%'>
     
-<br>
 
 ### 🍜[Case Study #1 - Danny's Diner](./Case%20Study%20%231%20-%20Danny's%20Diner)🍜
 
