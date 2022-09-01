@@ -13,7 +13,7 @@ Note: Solutions are coded in **MySQL 8.0**.
 ## List of case studies
 
 
-[<img src='https://8weeksqlchallenge.com/images/case-study-designs/1.png' width='23%'>](./Case%20Study%20%231%20-%20Danny's%20Diner)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/2.png' width='23%'>](./Case%20Study%20%232%20-%20Pizza%20Runner)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/3.png' width='23%'>](./Case%20Study%20%233%20-%20Foodie-Fi)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/4.png' width='23%'>](./Case%20Study%20#4%20-%20Data%20Bank)<img src='https://8weeksqlchallenge.com/images/case-study-designs/5.png'  width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/6.png' width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/7.png' width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/8.png' width='23%'>
+[<img src='https://8weeksqlchallenge.com/images/case-study-designs/1.png' width='23%'>](./Case%20Study%20%231%20-%20Danny's%20Diner)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/2.png' width='23%'>](./Case%20Study%20%232%20-%20Pizza%20Runner)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/3.png' width='23%'>](./Case%20Study%20%233%20-%20Foodie-Fi)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/4.png' width='23%'>](./Case%20Study%20%234%20-%20Data%20Bank)<img src='https://8weeksqlchallenge.com/images/case-study-designs/5.png'  width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/6.png' width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/7.png' width='23%'><img src='https://8weeksqlchallenge.com/images/case-study-designs/8.png' width='23%'>
     
 
 ### 🍜 [Case Study #1 - Danny's Diner](./Case%20Study%20%231%20-%20Danny's%20Diner) 
@@ -28,5 +28,5 @@ Notalbe functions used: `REGEXP_SUBSTR()`, `CAST()`, `JSON_TABLE()`, `GROUP_CONC
 Notable functions used: `LAG()`, `LEAD()`, `ADDDATE()`, `SUBDATE()`, `WITH RECURSIVE` 
 
 
-### 💰 [Case Study #4 - Data Bank](./Case%20Study%20#4%20-%20Data%20Bank) 💰
+### 💰 [Case Study #4 - Data Bank](./Case%20Study%20%234%20-%20Data%20Bank) 💰
 Notable functions used: `LAG()`, `LEAD()`, `LAST_VALUE()`, `WITH RECURSIVE`, `GREATEST()`, `UNION`, `SUM() OVER()`
