@@ -20,7 +20,7 @@
 
 <p>Using all of the data available - how much data would have been required for each option on a monthly basis?</p>
 
---
+***
 
 <br>
 From the description of each option, we note that:
