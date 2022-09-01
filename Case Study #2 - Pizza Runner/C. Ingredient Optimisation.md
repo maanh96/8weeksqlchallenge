@@ -2,6 +2,10 @@
 
 ## C. Ingredient Optimisation 
 ### 1. What are the standard ingredients for each pizza?
+`pizza_recipes` table list all toppings of a pizza in one row. In order to map ingredients with their names, we will create a temporary table to list each topping in one line. 
+
+To do this, we first convert list of `toppings` to JSON array, then use [JSON Table Functions](https://dev.mysql.com/doc/refman/8.0/en/json-table-functions.html#function_json-table) to convert them to tabular data.
+
 ```sql
 -- in order to join with other table we will create a pizza_receipes_temp table to convert toppings to long format
 DROP TABLE IF EXISTS pizza_recipes_temp;
@@ -10,7 +14,7 @@ CREATE TEMPORARY TABLE pizza_recipes_temp
 SELECT p.pizza_id, j.toppings 
 FROM pizza_recipes p 
 INNER JOIN JSON_TABLE(
-	REPLACE(json_array(p.toppings), ', ', '","'),
+	REPLACE(JSON_ARRAY(p.toppings), ', ', '","'),
 	'$[*]' COLUMNS (toppings VARCHAR(50) PATH '$')
 ) AS j;
 
@@ -24,6 +28,8 @@ Result:
 | 1        | 3        |
 | 1        | 4        |
 | ...      | ...      |
+
+Now we can match `topping_id` with `topping_name`. To group all toppings of each pizza in one row, we use `GROUP_CONCAT()` function.
 
 ```sql
 -- from pizza_recipes_temp inner join with pizza_names and pizza_toppings to get name of pizza and toppings
@@ -58,7 +64,7 @@ CREATE TEMPORARY TABLE extras_temp
 SELECT c.record_id, j.extras 
 FROM customer_orders_temp c
 INNER JOIN JSON_TABLE(
-	REPLACE(json_array(c.extras), ', ', '","'),
+	REPLACE(JSON_ARRAY(c.extras), ', ', '","'),
 	'$[*]' COLUMNS (extras VARCHAR(50) PATH '$')
 ) AS j;
 
@@ -200,7 +206,7 @@ Result:
     -- inner join pizza_toppings to get toppings name
     -- use case for each toppings in case of none, exclusion (not appear), extra (2x)
     -- order by toppings name
--- use case to create order_details
+-- concat pizza name with toppings to create ingredient_list
 
 WITH cte AS(
 	SELECT
