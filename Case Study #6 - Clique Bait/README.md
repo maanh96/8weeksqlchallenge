@@ -5,6 +5,8 @@
 View full case study [here](https://8weeksqlchallenge.com/case-study-6/)
 
 ## Introduction
+Clique Bait is not like your regular online seafood store - the founder and CEO Danny, was also a part of a digital data analytics team and wanted to expand his knowledge into the seafood industry! In this case study - we are required to support Danny’s vision and analyse his dataset and come up with creative solutions to calculate funnel fallout rates for the Clique Bait online store.
+
 
 
 ## Datasets
@@ -13,6 +15,11 @@ View full case study [here](https://8weeksqlchallenge.com/case-study-6/)
 
 Dataset for this case study include:
 
+* `users`: Customers who visit the Clique Bait website are tagged via their `cookie_id`
+* `events`: Customer visits are logged in this events table at a `cookie_id` level and the `event_type` and `page_id` values can be used to join onto relevant satellite tables to obtain further information about each event
+* `event_identifier`: shows the types of events which are captured by Clique Bait’s digital data systems
+* `campaign_identifier`: shows information for the 3 campaigns that Clique Bait has ran on their website so far in 2020
+* `page_hierarchy`: lists all of the pages on the Clique Bait website which are tagged and have data passing through from user interaction events.
 
 View SQL schema file [here](./Schema.sql) 
 

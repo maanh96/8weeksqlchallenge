@@ -34,11 +34,11 @@ Notable functions used: `LAG()`, `LEAD()`, `LAST_VALUE()`, `WITH RECURSIVE`, `GR
 ### 🛒 [Case Study #5 - Data Mart](./Case%20Study%20%235%20-%20Data%20Mart) 🛒
 Notable functions used: 
 
-### [Case Study #6 - Clique Bait](./Case%20Study%20%236%20-%20Clique%20Bait)
+### 🪝 [Case Study #6 - Clique Bait](./Case%20Study%20%236%20-%20Clique%20Bait) 🪝
 Notable functions used:
 
-### [Case Study #7 - Balanced Tree Clothing Co](./Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co)
+### 🏔️ [Case Study #7 - Balanced Tree Clothing Co](./Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co) 🏔️
 Notable functions used:
 
-### [Case Study #8 - Fresh Segments](./Case%20Study%20%238%20-%20Fresh%20Segments)
+### 🍊 [Case Study #8 - Fresh Segments](./Case%20Study%20%238%20-%20Fresh%20Segments) 🍊
 Notable functions used:
