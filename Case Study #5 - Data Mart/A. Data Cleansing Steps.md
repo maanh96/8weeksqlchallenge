@@ -1,6 +1,6 @@
 # Case Study #5 - Data Mart
 
-## 1. Data Cleansing Steps
+## A. Data Cleansing Steps
 <p>In a single query, perform the following operations and generate a new table in the <code class="language-plaintext highlighter-rouge">data_mart</code> schema named <code class="language-plaintext highlighter-rouge">clean_weekly_sales</code>:</p>
 
 <ul>
@@ -139,4 +139,4 @@ Result:
 <br>
 
 ***
-Let's move to [2. Data Exploration](./2.%20Data%20Exploration.md).
+Let's move to [B. Data Exploration](./B.%20Data%20Exploration.md).

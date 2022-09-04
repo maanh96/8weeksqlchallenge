@@ -1,6 +1,6 @@
 # Case Study #5 - Data Mart
 
-## 2. Data Exploration
+## B. Data Exploration
 
 ### 1. What day of the week is used for each <code class="language-plaintext highlighter-rouge">week_date</code> value?
 ``` sql
@@ -208,4 +208,4 @@ Result:
 <br>
 
 ***
-Let's move to [3. Before & After Analysis](3.%20Before%20&%20After%20Analysis.md).
+Let's move to [C. Before & After Analysis](./C.%20Before%20&%20After%20Analysis.md).

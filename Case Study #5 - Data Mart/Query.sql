@@ -2,7 +2,7 @@
    Case Study Questions
    --------------------*/
 
--- 1. Data Cleansing Steps --
+-- A. Data Cleansing Steps --
 -- In a single query, perform the following operations and generate a new table in the data_mart schema named clean_weekly_sales:
 	-- Convert the week_date to a DATE format
 	-- Add a week_number as the second column for each week_date value, for example any value from the 1st of January to 7th of January will be 1, 8th to 14th will be 2 etc
@@ -51,7 +51,7 @@ SELECT
 FROM weekly_sales;
 SELECT * FROM clean_weekly_sales;
 
--- 2. Data Exploration --
+-- B. Data Exploration --
 -- 1. What day of the week is used for each week_date value?
 SELECT DISTINCT DAYNAME(week_date) AS week_day
 FROM clean_weekly_sales;
@@ -131,7 +131,7 @@ FROM clean_weekly_sales
 GROUP BY calendar_year, platform
 ORDER BY calendar_year;
 
--- 3. Before & After Analysis --
+-- C. Before & After Analysis --
 -- This technique is usually used when we inspect an important event and want to inspect the impact before and after a certain point in time.
 -- Taking the week_date value of 2020-06-15 as the baseline week where the Data Mart sustainable packaging changes came into effect.
 -- We would include all week_date values for 2020-06-15 as the start of the period after the change and the previous week_date values would be before
@@ -184,7 +184,7 @@ FROM cte
 GROUP BY calendar_year
 ORDER BY calendar_year;
 
--- 4. Bonus Question
+-- D. Bonus Question
 -- Which areas of the business have the highest negative impact in sales metrics performance in 2020 for the 12 week before and after period?
 	-- region
 WITH cte AS(

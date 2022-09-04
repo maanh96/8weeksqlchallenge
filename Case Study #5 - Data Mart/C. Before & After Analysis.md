@@ -1,6 +1,6 @@
 # Case Study #5 - Data Mart
 
-## 3. Before & After Analysis
+## C. Before & After Analysis
 
 <p>This technique is usually used when we inspect an important event and want to inspect the impact before and after a certain point in time.</p>
 
@@ -83,4 +83,4 @@ Looking at the results, we can see that even though the downtrend between the tw
 <br>
 
 ***
-Let's move to [4. Bonus Question](./4.%20Bonus%20Question.md).
+Let's move to [D. Bonus Question](./D.%20Bonus%20Question.md).

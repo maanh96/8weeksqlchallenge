@@ -22,7 +22,7 @@ View SQL schema file [here](./Schema.sql)
 
 ## Case Study Questions
 
-### 1. Data Cleansing Steps - [Solution](./1.%20Data%20Cleansing%20Steps.md)
+### A. Data Cleansing Steps - [Solution](./A.%20Data%20Cleansing%20Steps.md)
 
 <p>In a single query, perform the following operations and generate a new table in the <code class="language-plaintext highlighter-rouge">data_mart</code> schema named <code class="language-plaintext highlighter-rouge">clean_weekly_sales</code>:</p>
 
@@ -97,7 +97,7 @@ View SQL schema file [here](./Schema.sql)
   </li>
 </ul>
 
-### 2. Data Exploration - [Solution](./2.%20Data%20Exploration.md)
+### B. Data Exploration - [Solution](./B.%20Data%20Exploration.md)
 
 <ol>
   <li>What day of the week is used for each <code class="language-plaintext highlighter-rouge">week_date</code> value?</li>
@@ -111,7 +111,7 @@ View SQL schema file [here](./Schema.sql)
   <li>Can we use the <code class="language-plaintext highlighter-rouge">avg_transaction</code> column to find the average transaction size for each year for Retail vs Shopify? If not - how would you calculate it instead?</li>
 </ol>
 
-### 3. Before & After Analysis - [Solution](3.%20Before%20&%20After%20Analysis.md) 
+### C. Before & After Analysis - [Solution](C.%20Before%20&%20After%20Analysis.md) 
 
 <p>This technique is usually used when we inspect an important event and want to inspect the impact before and after a certain point in time.</p>
 
@@ -127,7 +127,7 @@ View SQL schema file [here](./Schema.sql)
   <li>How do the sale metrics for these 2 periods before and after compare with the previous years in 2018 and 2019?</li>
 </ol>
 
-### 4. Bonus Question - [Solution](./4.%20Bonus%20Question.md)
+### D. Bonus Question - [Solution](./D.%20Bonus%20Question.md)
 
 <p>Which areas of the business have the highest negative impact in sales metrics performance in 2020 for the 12 week before and after period?</p>
 
