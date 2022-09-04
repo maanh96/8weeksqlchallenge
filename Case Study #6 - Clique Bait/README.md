@@ -8,7 +8,9 @@ View full case study [here](https://8weeksqlchallenge.com/case-study-6/)
 
 
 ## Datasets
-<img src=''>
+
+![Clique Bait](https://user-images.githubusercontent.com/58045173/188321344-2069c761-bfc5-4691-b208-235c845b24bd.png)
+
 Dataset for this case study include:
 
 
