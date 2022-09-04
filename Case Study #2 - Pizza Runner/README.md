@@ -8,7 +8,7 @@ Danny wanted to expand his new Pizza Empire by launching Pizza Runner program. H
 
 ## Datasets
 
-![image](https://user-images.githubusercontent.com/58045173/184939849-7f9005bf-9560-41e1-afe8-6cecfbee01c6.png)
+![Pizza Runner](https://user-images.githubusercontent.com/58045173/188302025-0298e873-9c67-4cd3-94d5-f7c7200f619d.png)
 
 Dataset for this case study include:
 * `runners`: shows the `registration_date` for each new runner
