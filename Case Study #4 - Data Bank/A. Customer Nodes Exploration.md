@@ -93,43 +93,28 @@ Result:
 ### 5. What is the median, 80th and 95th percentile for this same reallocation days metric for each region?
 ``` sql
 -- use PERCENT_RANK() to find the percentile of each reallocation days for each region
--- use case & rank to find out the day that have percentile nearest to 0.5, 0.8 and 0.95
--- use sum to group by region_name
- 
- WITH cte1 AS(
+-- use FIRST_VALUE() AND CASE to find out the day that have percentile is smaller and nearest to 0.5, 0.8 and 0.95
+ WITH cte AS(
 	SELECT DISTINCT
 		region_name,
         total_reallocate_days,
 		PERCENT_RANK() OVER(PARTITION BY region_name ORDER BY total_reallocate_days) AS percentile
-	FROM customer_nodes_temp),
-cte2 AS(
-	SELECT
-		region_name,
-        CASE
-			WHEN RANK() OVER(PARTITION BY region_name ORDER BY ABS(percentile - 0.5)) = 1
-				THEN total_reallocate_days
-        END AS median,
-        CASE
-			WHEN RANK() OVER(PARTITION BY region_name ORDER BY ABS(percentile - 0.8)) = 1
-				THEN total_reallocate_days
-		END AS percentile_80,
-        CASE
-			WHEN RANK() OVER(PARTITION BY region_name ORDER BY ABS(percentile - 0.95)) = 1
-				THEN total_reallocate_days
-		END AS percentile_95
-    FROM cte1)
-SELECT region_name, SUM(median) AS median, SUM(percentile_80) AS percentile_80, SUM(percentile_95) AS percentile_95
-FROM cte2
-GROUP BY region_name;
+	FROM customer_nodes_temp)
+SELECT DISTINCT
+	region_name,
+	FIRST_VALUE(total_reallocate_days) OVER(PARTITION BY region_name ORDER BY CASE WHEN percentile <= 0.50 THEN percentile END DESC) AS median,
+	FIRST_VALUE(total_reallocate_days) OVER(PARTITION BY region_name ORDER BY CASE WHEN percentile <= 0.80 THEN percentile END DESC) AS percentile_80,
+	FIRST_VALUE(total_reallocate_days) OVER(PARTITION BY region_name ORDER BY CASE WHEN percentile <= 0.95 THEN percentile END DESC) AS percentile_95
+FROM cte;
 ```
 Result:
 | region_name | median | percentile_80 | percentile_95 |
 | :---------- | :----- | :------------ | :------------ |
-| Africa      | 18     | 27            | 38            |
-| America     | 17     | 27            | 37            |
-| Asia        | 17     | 27            | 40            |
-| Australia   | 18     | 27            | 43            |
-| Europe      | 18     | 28            | 39            |
+| Africa      | 17     | 27            | 38            |
+| America     | 17     | 26            | 36            |
+| Asia        | 17     | 26            | 38            |
+| Australia   | 17     | 27            | 41            |
+| Europe      | 18     | 27            | 38            |
 
 <br>
 

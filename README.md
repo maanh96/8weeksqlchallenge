@@ -29,7 +29,7 @@ Notable functions used: `LAG()`, `LEAD()`, `ADDDATE()`, `SUBDATE()`, `WITH RECUR
 
 
 ### 💰 [Case Study #4 - Data Bank](./Case%20Study%20%234%20-%20Data%20Bank) 💰
-Notable functions used: `LAG()`, `LEAD()`, `LAST_VALUE()`, `WITH RECURSIVE`, `GREATEST()`, `UNION`, `SUM() OVER()`
+Notable functions used: `LAG()`, `LEAD()`, `FIRST_VALUE()`, `PERCENT_RANK()`, `LAST_VALUE()`, `WITH RECURSIVE`, `GREATEST()`, `UNION`, `SUM() OVER()`
 
 ### 🛒 [Case Study #5 - Data Mart](./Case%20Study%20%235%20-%20Data%20Mart) 🛒
 Notable functions used: 
