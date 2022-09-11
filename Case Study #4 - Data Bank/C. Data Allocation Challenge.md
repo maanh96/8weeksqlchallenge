@@ -132,4 +132,4 @@ Result:
 | 4     | 258207   | 254194   | 282682   |
 
 ***
-Let's move to [D. Extra Challenge](./D.%20Extra%20Challenge.md).
+Finally, let's move to [D. Extra Challenge](./D.%20Extra%20Challenge.md).

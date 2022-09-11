@@ -148,4 +148,6 @@ Result:
 <br>
 
 ***
+~ This is the end of 8 Week SQL Challenge ~
+
 Back to [Main menu](https://github.com/maanh96/8weeksqlchallenge).

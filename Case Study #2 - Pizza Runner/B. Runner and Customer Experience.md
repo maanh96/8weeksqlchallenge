@@ -27,8 +27,8 @@ SELECT
             2) AS average_time
 FROM
     runner_orders_temp r
-        INNER JOIN
-    customer_orders_temp c ON r.order_id = c.order_id
+INNER JOIN customer_orders_temp c 
+    ON r.order_id = c.order_id
 WHERE
     cancellation IS NULL
 GROUP BY runner_id;

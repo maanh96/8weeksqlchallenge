@@ -69,8 +69,8 @@ SELECT
     customer_id, pizza_name, COUNT(*) AS pizza_ordered
 FROM
     customer_orders_temp c
-        INNER JOIN
-    pizza_names p ON c.pizza_id = p.pizza_id
+INNER JOIN pizza_names p 
+    ON c.pizza_id = p.pizza_id
 GROUP BY customer_id , pizza_name
 ORDER BY customer_id;
 ```

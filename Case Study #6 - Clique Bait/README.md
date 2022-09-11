@@ -11,7 +11,7 @@ Clique Bait is not like your regular online seafood store - the founder and CEO 
 
 ## Datasets
 
-![Clique Bait](https://user-images.githubusercontent.com/58045173/188321344-2069c761-bfc5-4691-b208-235c845b24bd.png)
+<img src='https://user-images.githubusercontent.com/58045173/188321344-2069c761-bfc5-4691-b208-235c845b24bd.png' width='600'>
 
 Dataset for this case study include:
 

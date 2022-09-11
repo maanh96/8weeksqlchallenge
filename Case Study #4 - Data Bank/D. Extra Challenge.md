@@ -185,4 +185,6 @@ Result:
 <br>
 
 ***
+~ This is the end of Case Study 4 ~
+
 Back to [Main menu](https://github.com/maanh96/8weeksqlchallenge).

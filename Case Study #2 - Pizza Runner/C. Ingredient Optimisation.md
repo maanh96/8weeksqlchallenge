@@ -35,8 +35,7 @@ Now we can match `topping_id` with `topping_name`. To group all toppings of each
 -- from pizza_recipes_temp inner join with pizza_names and pizza_toppings to get name of pizza and toppings
 SELECT 
     pizza_name,
-    GROUP_CONCAT(topping_name
-        SEPARATOR ', ') AS toppings
+    GROUP_CONCAT(topping_name SEPARATOR ', ') AS toppings
 FROM
     pizza_recipes_temp r
         INNER JOIN
@@ -301,4 +300,4 @@ Result:
 <br>
 
 ***
-Let's move to [D. Pricing and Ratings](./D.%20Pricing%20and%20Ratings%20%26%20E.%20Bonus%20Questions.md).
+Finally, let's move to [D. Pricing and Ratings](./D.%20Pricing%20and%20Ratings%20%26%20E.%20Bonus%20Questions.md).

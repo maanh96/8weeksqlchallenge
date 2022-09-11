@@ -36,4 +36,6 @@ With each solution, it is important to specify the goal per period clearly at th
 <br>
 
 ***
+~ This is the end of Case Study 3 ~
+
 Back to [Main menu](https://github.com/maanh96/8weeksqlchallenge).

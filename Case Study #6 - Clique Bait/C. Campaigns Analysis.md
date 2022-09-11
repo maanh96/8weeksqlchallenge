@@ -75,4 +75,6 @@ Result:
 | ...     | ...      | ...                 | ...        | ....      | ...      | ...                               | ...        | ...   | ...                                                                                   | ... |
 
 ***
+~ This is the end of Case Study 6 ~
+
 Back to [Main menu](https://github.com/maanh96/8weeksqlchallenge).
