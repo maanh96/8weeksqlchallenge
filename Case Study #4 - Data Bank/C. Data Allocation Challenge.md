@@ -33,6 +33,8 @@ From the description of each option, we note that:
 Now, let's calculate the required information. First, we create `running_cte` table to calculate the impact each transaction.
 
 ```sql
+-- use ROWS frame_units instead of RANGE since some transaction can have the same date
+
 DROP TABLE IF EXISTS running_cte;
 
 CREATE TEMPORARY TABLE running_cte
@@ -85,6 +87,8 @@ Result:
 Next we create `month_cte` to calculate closing balance, average running balance and maximum running balance of each month.
 
 ```sql
+-- in this case ROWS and RANGE frame_units will return the same result
+
 DROP TABLE IF EXISTS month_cte;
 
 CREATE TEMPORARY TABLE month_cte

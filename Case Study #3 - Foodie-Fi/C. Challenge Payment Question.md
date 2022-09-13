@@ -12,7 +12,7 @@ The Foodie-Fi team wants you to create a new <code class="language-plaintext hig
 
 <br>
 
-First let's create a `subscriptions_temp_2020` temporary table to cut off entries in desired preriod.
+First let's create a `subscriptions_temp_2020` temporary table to cut off entries in desired period.
 ```sql
 -- first we create a temporary table to store only entries in 2020 and create last_date column to cut off in '2020-12-31' 
 DROP TABLE IF EXISTS subscriptions_temp_2020;

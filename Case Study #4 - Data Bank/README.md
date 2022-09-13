@@ -4,7 +4,7 @@
 View full case study [here](https://8weeksqlchallenge.com/case-study-4/)
 
 ## Introduction
-Danny decides to launch a new initiative - Data Bank, which is a combination of the new age banks, cryptocurrency and the secure distributed data storage platform. Customers are allocated cloud data storage limits which are directly linked to how much money they have in their accounts. Data Bank team need your help to track how much data storage their customers will need, calculate metrics, growth and analyse their data in a smart way to better forecast and plan for their future developments.
+Danny decides to launch a new initiative - Data Bank, which is a combination of the new age banks, cryptocurrency and the secure distributed data storage platform. Customers are allocated cloud data storage limits which are directly linked to how much money they have in their accounts. Data Bank team need our help to track how much data storage their customers will need, calculate metrics, growth and analyse their data in a smart way to better forecast and plan for their future developments.
 
 ## Datasets
 <img src='https://8weeksqlchallenge.com/images/case-study-4-erd.png'>

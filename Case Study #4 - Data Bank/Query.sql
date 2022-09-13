@@ -113,7 +113,7 @@ GROUP BY month;
 	-- use recursive cte to add row of month that don't have any transaction
 	-- left join with amount_cte to caculate closing balance
 DROP TABLE IF EXISTS monthly_balance;
-CREATE TEMPORARY TABLE monthly_balance
+CREATE TEMPORARY TABLE monthly_balance	
 WITH RECURSIVE month_cte(customer_id, month) AS(
 	SELECT
 		customer_id,
@@ -131,7 +131,7 @@ amount_cte AS(
 	FROM customer_transactions
 	GROUP BY customer_id, month)
 SELECT m.customer_id, m.month, monthly_amount,
-	SUM(monthly_amount) OVER(PARTITION BY customer_id ORDER BY month RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS closing_balance
+	SUM(monthly_amount) OVER(PARTITION BY customer_id ORDER BY month RANGE UNBOUNDED PRECEDING) AS closing_balance
 FROM month_cte m
 LEFT JOIN amount_cte a
 	ON m.customer_id = a.customer_id AND m.month = a.month
@@ -193,9 +193,9 @@ SELECT * FROM running_cte;
 DROP TABLE IF EXISTS month_cte;
 CREATE TEMPORARY TABLE month_cte
 SELECT DISTINCT customer_id, month,
-		LAST_VALUE(running_balance) OVER(PARTITION BY customer_id, month ORDER BY txn_date RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS closing_balance,
-		ROUND(AVG(running_balance) OVER(PARTITION BY customer_id, month ORDER BY txn_date RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING)) AS avg_balance,
-		MAX(running_balance) OVER(PARTITION BY customer_id, month ORDER BY txn_date RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS max_balance
+	LAST_VALUE(running_balance) OVER(PARTITION BY customer_id, month ORDER BY txn_date RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS closing_balance,
+	ROUND(AVG(running_balance) OVER(PARTITION BY customer_id, month ORDER BY txn_date RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING)) AS avg_balance,
+	MAX(running_balance) OVER(PARTITION BY customer_id, month ORDER BY txn_date RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS max_balance
 FROM running_cte;
 SELECT * FROM month_cte LIMIT 10;
 

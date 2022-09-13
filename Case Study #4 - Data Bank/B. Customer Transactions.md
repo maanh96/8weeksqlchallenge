@@ -61,7 +61,7 @@ Result:
 ### 4. What is the closing balance for each customer at the end of the month?
 ``` sql
 -- use recursive cte to add row of month that don't have any transaction
--- left join with amount_cte to caculate closing balance
+-- left join with amount_cte to calculate closing balance
 
 DROP TABLE IF EXISTS monthly_balance;
 CREATE TEMPORARY TABLE monthly_balance
@@ -84,7 +84,7 @@ amount_cte AS(
 	GROUP BY customer_id, month)
 
 SELECT m.customer_id, m.month, monthly_amount,
-	SUM(monthly_amount) OVER(PARTITION BY customer_id ORDER BY month RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS closing_balance
+	SUM(monthly_amount) OVER(PARTITION BY customer_id ORDER BY month RANGE UNBOUNDED PRECEDING) AS closing_balance
 FROM month_cte m
 LEFT JOIN amount_cte a
 	ON m.customer_id = a.customer_id AND m.month = a.month

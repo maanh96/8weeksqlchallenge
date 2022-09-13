@@ -4,7 +4,7 @@
 View full case study [here](https://8weeksqlchallenge.com/case-study-2/)
 
 ## Introduction
-Danny wanted to expand his new Pizza Empire by launching Pizza Runner program. He started by recruiting “runners” to deliver fresh pizza from Pizza Runner Headquarters (otherwise known as Danny’s house) and also maxed out his credit card to pay freelance developers to build a mobile app to accept orders from customers. He need our further assistance to clean his data and apply some basic calculations so he can better direct his runners and optimise Pizza Runner’s operations.
+Danny wanted to expand his new Pizza Empire by launching Pizza Runner program. He started by recruiting “runners” to deliver fresh pizza from Pizza Runner Headquarters (otherwise known as Danny’s house) and also maxed out his credit card to pay freelance developers to build a mobile app to accept orders from customers. He need our further assistance to clean his data and apply some basic calculations so he can better direct his runners and optimize Pizza Runner’s operations.
 
 ## Datasets
 

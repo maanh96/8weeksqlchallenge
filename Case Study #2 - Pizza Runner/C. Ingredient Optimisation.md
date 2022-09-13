@@ -7,7 +7,7 @@
 To do this, we first convert list of `toppings` to JSON array, then use [JSON Table Functions](https://dev.mysql.com/doc/refman/8.0/en/json-table-functions.html#function_json-table) to convert them to tabular data.
 
 ```sql
--- in order to join with other table we will create a pizza_receipes_temp table to convert toppings to long format
+-- in order to join with other table we will create a pizza_recipes_temp table to convert toppings to long format
 DROP TABLE IF EXISTS pizza_recipes_temp;
 
 CREATE TEMPORARY TABLE pizza_recipes_temp

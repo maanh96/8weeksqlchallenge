@@ -76,7 +76,7 @@ Result:
 ```sql
 -- from sales table count product_id to get total_purchase of each item
 -- inner join with menu to get items' name
--- order by total_purchase in decending ordder and limit 1
+-- order by total_purchase in descending order and limit 1
 
 SELECT
 	product_name,
@@ -96,7 +96,7 @@ Result:
 ### 5. Which item was the most popular for each customer?
 ```sql
 -- from sales create cte table that:
-	-- rank purchase number of items of each customer in decending order
+	-- rank purchase number of items of each customer in descending order
 	-- inner join with menu to get items' name
 -- filter ranking = 1
 

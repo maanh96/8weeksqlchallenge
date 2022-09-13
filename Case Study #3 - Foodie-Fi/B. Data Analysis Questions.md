@@ -174,7 +174,7 @@ Result:
 
 ### 10. Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)
 ```sql
--- same with previous question but wee add additional cte to caculate period categories
+-- same with previous question but wee add additional cte to calculate period categories
 WITH trial AS(
 	SELECT *
     FROM subscriptions

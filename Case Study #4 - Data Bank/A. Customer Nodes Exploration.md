@@ -81,7 +81,7 @@ INNER JOIN regions r
 WHERE e.end_date != '9999-12-31'
 ORDER BY s.customer_id, s.start_date;
 
--- caculate average reallocate day using created temp table
+-- calculate average reallocate day using created temp table
 SELECT ROUND(AVG(total_reallocate_days), 2) AS avg_allocate_day
 FROM customer_nodes_temp;
 ```
@@ -93,7 +93,7 @@ Result:
 ### 5. What is the median, 80th and 95th percentile for this same reallocation days metric for each region?
 ``` sql
 -- use PERCENT_RANK() to find the percentile of each reallocation days for each region
--- use FIRST_VALUE() AND CASE to find out the day that have percentile is smaller and nearest to 0.5, 0.8 and 0.95
+-- use FIRST_VALUE() and CASE to find out the day that have percentile is smaller and nearest to 0.5, 0.8 and 0.95
  WITH cte AS(
 	SELECT DISTINCT
 		region_name,

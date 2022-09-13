@@ -9,10 +9,10 @@ Based off the 8 sample customers provided in the sample from the subscriptions t
 
 First, let's create a temporary table to calculate `end_date` of each plan.
 ``` sql
--- for this and  other questions, we will create a temporary table subscriptions_temp to caculate the end_date of each plan
+-- for this and  other questions, we will create a temporary table subscriptions_temp to calculate the end_date of each plan
 -- from subscription table we create a cte table that:
     -- inner join plans to get plan_name
-    -- create date_diff column to caculate the duration between current plan and previous plan
+    -- create date_diff column to calculate the duration between current plan and previous plan
     -- create previous_plan column by using LAG() window function
 -- create end_date column based on previous_plan and date_diff
 DROP TABLE IF EXISTS subscriptions_temp;
@@ -82,9 +82,9 @@ Brief description:
 * **Customer 11:** started free trial on 19 November 2020, after 7 day free trial canceled the subscription;
 * **Customer 13:** started free trial on 15 December 2020, after 7 day free trial downgraded to basic monthly plan until 29 March 2021 when he/she upgraded to pro monthly plan and used it until now;
 * **Customer 15:** started free trial on 17 March 2020, after 7 day free trial automatically continue with the pro monthly plan until cancelled on 29 April 2020. The subscription continued until 24 May 2020;
-* **Customer 16:** started free trial on 31 May 2020, after 7 day free trial downgraded to basic monthly plan until 31 October 2020 when he/she upgraded to pro annuall plan and used it until now;
+* **Customer 16:** started free trial on 31 May 2020, after 7 day free trial downgraded to basic monthly plan until 31 October 2020 when he/she upgraded to pro annual plan and used it until now;
 * **Customer 18:** started free trial on 06 July 2020, after 7 day free trial automatically continue with the pro monthly plan until now;
-* **Customer 13:** started free trial on 22 June 2020, after 7 day free trial automatically continue with the pro monthly plan until 29 August 2020 when he/she upgradged to pro annual plan and used it until now.
+* **Customer 13:** started free trial on 22 June 2020, after 7 day free trial automatically continue with the pro monthly plan until 29 August 2020 when he/she upgraded to pro annual plan and used it until now.
 
 <br>
 

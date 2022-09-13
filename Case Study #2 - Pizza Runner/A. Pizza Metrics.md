@@ -144,7 +144,7 @@ SELECT
         THEN
             1
         ELSE 0
-    END) AS pizza_delivered_w_exclustions_extras
+    END) AS pizza_delivered_w_exclusions_extras
 FROM
     customer_orders_temp c
         INNER JOIN
@@ -153,9 +153,9 @@ WHERE
     cancellation IS NULL;
 ```
 Result:
-| pizza_delivered_w_exclustions_extras |
-| ------------------------------------ |
-| 1                                    |
+| pizza_delivered_w_exclusions_extras |
+| ----------------------------------- |
+| 1                                   |
 
 ### 9. What was the total volume of pizzas ordered for each hour of the day?
 ``` sql
