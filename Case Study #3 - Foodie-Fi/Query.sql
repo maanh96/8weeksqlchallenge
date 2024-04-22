@@ -37,7 +37,7 @@ SELECT customer_id, plan_id, plan_name, price, start_date,
 		ELSE SUBDATE(LEAD(start_date) OVER(PARTITION BY customer_id ORDER BY start_date), INTERVAL 1 DAY)
     END AS end_date
 FROM cte;
-SELECT * FROM subscription_temp;
+SELECT * FROM subscriptions_temp;
 
     -- filter needed customer_id
 SELECT customer_id, plan_name, start_date, end_date

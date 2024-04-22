@@ -1,10 +1,10 @@
 # Case Study #8 - Fresh Segments
 <img src='https://8weeksqlchallenge.com/images/case-study-designs/8.png' width='400'>
 
-View full case study [here](https://8weeksqlchallenge.com/case-study-8/)
+View the full case study [here](https://8weeksqlchallenge.com/case-study-8/)
 
 ## Introduction
-Danny created Fresh Segments, a digital marketing agency that helps other businesses analyse trends in online ad click behaviour for their unique customer base.
+Danny created Fresh Segments, a digital marketing agency that helps other businesses analyze trends in online ad click behavior for their unique customer base.
 
 Clients share their customer lists with the Fresh Segments team who then aggregate interest metrics and generate a single dataset worth of metrics for further analysis.
 
@@ -13,11 +13,43 @@ In particular - the composition and rankings for different interests are provide
 Danny has asked for our assistance to analyse aggregated metrics for an example client and provide some high level insights about the customer list and their interests.
 
 ## Datasets
-<img src=''>
-Dataset for this case study include:
+The dataset for this case study includes:
+<ul>
+<li> <code>interest_metrics</code>: contains information about aggregated interest metrics for <b>a specific major client</b> of Fresh Segments. For example:
+<table>
+  <thead>
+    <tr>
+      <th>_month</th>
+      <th>_year</th>
+      <th>month_year</th>
+      <th>interest_id</th>
+      <th>composition</th>
+      <th>index_value</th>
+      <th>ranking</th>
+      <th>percentile_ranking</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>7</td>
+      <td>2018</td>
+      <td>07-2018</td>
+      <td>32486</td>
+      <td>11.89</td>
+      <td>6.19</td>
+      <td>1</td>
+      <td>99.86</td>
+    </tr>
+  </tbody>
+</table>
 
+  means that in July 2018, the interest id `32486` got `11.89`% of the client’s customer list interacted with (`composition`). This interest's composition value is `6.19`x the **average composition value** for **all Fresh Segments clients’ customer** for **this particular interest** in the month of July 2018 (`index_value`). The `ranking` and `percentage_ranking` relates to the order of `index_value` records in each month year.
+</li>
 
-View SQL schema file [here](./Schema.sql) 
+<li> <code>interest_map</code>: links the <code>id</code> (<code>interest_id</code>) with their information: name, details, created at and last modified </li>
+</ul>
+
+View the SQL schema file [here](./Schema.sql).
 
 ## Case Study Questions
 
@@ -69,4 +101,4 @@ View SQL schema file [here](./Schema.sql)
 
 <br>
 
-View full SQL query file [here](./Query.sql).
+View the full SQL query file [here](./Query.sql).

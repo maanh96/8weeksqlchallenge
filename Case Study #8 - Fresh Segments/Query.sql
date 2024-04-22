@@ -95,7 +95,7 @@ WITH cte AS(
 	GROUP BY interest_id)
 SELECT total_months, COUNT(*) AS number_interests_in_all_n_months,
 	ROUND(
-		SUM(COUNT(*)) OVER(ORDER BY total_months DESC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) / 
+		SUM(COUNT(*)) OVER(ORDER BY total_months DESC ROWS UNBOUNDED PRECEDING) / 
         (SELECT COUNT(DISTINCT interest_id) FROM interest_metrics) 
         *100, 2) AS cumulative_percent
 FROM cte
@@ -105,13 +105,13 @@ GROUP BY total_months;
 WITH cte AS(
 	SELECT 
 		interest_id,
-		COUNT(DISTINCT month_year) AS total_months
+		COUNT(month_year) AS total_months
 	FROM interest_metrics
 	GROUP BY interest_id),
 cte1 AS(
 	SELECT total_months, COUNT(*) AS interests, SUM(total_months) AS records, 
 		ROUND(
-			SUM(COUNT(*)) OVER(ORDER BY total_months DESC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) / 
+			SUM(COUNT(*)) OVER(ORDER BY total_months DESC ROWS UNBOUNDED PRECEDING) / 
 			(SELECT COUNT(DISTINCT interest_id) FROM interest_metrics) 
 			*100, 2) AS cumulative_percent
 	FROM cte
@@ -123,22 +123,24 @@ WHERE cumulative_percent > 91;
 -- 4. Does this decision make sense to remove these data points from a business perspective? Use an example where there are all 14 months present to a removed interest example for your arguments - think about what it means to have less months present from a segment perspective.
 WITH cte AS(
 	SELECT interest_id,
-		COUNT(DISTINCT month_year) AS total_months
+		COUNT(month_year) AS total_months
 	FROM interest_metrics
 	GROUP BY interest_id)
-SELECT *
+SELECT month_year, m.interest_id, interest_name, interest_summary, composition, index_value, ranking, percentile_ranking, total_months
 FROM interest_metrics m
 INNER JOIN cte c
-	On m.interest_id = c.interest_id
-WHERE month_year = '2019-04-01'
-;
+	ON m.interest_id = c.interest_id
+INNER JOIN interest_map mp
+	ON m.interest_id = mp.id
+WHERE m.interest_id IN (133, 19757)
+ORDER BY m.interest_id;
 
 -- 5. After removing these interests - how many unique interests are there for each month?
 DROP TABLE IF EXISTS interest_metrics_filtered;
 CREATE TEMPORARY TABLE interest_metrics_filtered
 WITH cte AS(
 	SELECT interest_id,
-		COUNT(DISTINCT month_year) AS total_months
+		COUNT(month_year) AS total_months
 	FROM interest_metrics
 	GROUP BY interest_id)
 SELECT m.*, total_months
@@ -149,7 +151,7 @@ WHERE total_months >= 6;
 
 SELECT 
 	month_year,
-    COUNT(interest_id) AS total_interests
+    COUNT(DISTINCT interest_id) AS total_interests
 FROM interest_metrics_filtered
 GROUP BY month_year;
 
@@ -162,7 +164,7 @@ WITH cte AS(
         RANK() OVER(ORDER BY MAX(composition)) AS bottom
 	FROM interest_metrics_filtered
 	GROUP BY interest_id)
-SELECT m.interest_id, interest_name, month_year, composition
+SELECT m.interest_id, interest_name, interest_summary, month_year, composition, percentile_ranking
 FROM cte
 INNER JOIN interest_metrics m
 	ON cte.interest_id = m.interest_id AND cte.max_composition = m.composition
@@ -172,7 +174,7 @@ WHERE top <= 10 OR bottom <= 10
 ORDER BY composition DESC;
 
 -- 2. Which 5 interests had the lowest average ranking value?
-SELECT interest_id, interest_name, AVG(ranking) AS avg_ranking
+SELECT interest_id, interest_name, interest_summary, AVG(percentile_ranking) AS avg_ranking
 FROM interest_metrics_filtered f
 INNER JOIN interest_map p
 	ON f.interest_id = p.id
@@ -181,7 +183,7 @@ ORDER BY avg_ranking
 LIMIT 5;
 
 -- 3. Which 5 interests had the largest standard deviation in their percentile_ranking value?
-SELECT interest_id, interest_name, ROUND(STD(percentile_ranking), 2) AS std_percentile
+SELECT interest_id, interest_name, interest_summary, ROUND(STD(percentile_ranking), 2) AS std_percentile
 FROM interest_metrics_filtered f
 INNER JOIN interest_map p
 	ON f.interest_id = p.id
@@ -190,34 +192,56 @@ ORDER BY std_percentile DESC
 LIMIT 5;
 
 -- 4. For the 5 interests found in the previous question - what was minimum and maximum percentile_ranking values for each interest and its corresponding year_month value? Can you describe what is happening for these 5 interests?
-WITH cte AS(
-	SELECT interest_id, interest_name, ROUND(STD(percentile_ranking), 2) AS std_percentile
-	FROM interest_metrics_filtered f
-	INNER JOIN interest_map p
-		ON f.interest_id = p.id
+WITH cte AS (
+	SELECT 
+		interest_id, 
+		ROUND(STD(percentile_ranking), 2) AS std_percentile,
+		MIN(percentile_ranking) AS min_percentile,
+		MAX(percentile_ranking) AS max_percentile
+	FROM interest_metrics_filtered
 	GROUP BY interest_id
 	ORDER BY std_percentile DESC
-	LIMIT 5),
-cte2 AS(
-	SELECT cte.*, MIN(m.percentile_ranking) AS min_percent, MAX(m.percentile_ranking) AS max_percent
-	FROM cte
-	INNER JOIN interest_metrics m
-		ON cte.interest_id = m.interest_id
-	GROUP BY interest_id)
-SELECT cte2.*, 
-	MIN(CASE WHEN cte2.min_percent = m.percentile_ranking THEN m.month_year END) AS min_month_year,
-    MIN(CASE WHEN cte2.max_percent = m.percentile_ranking THEN m.month_year END) AS max_month_year
-FROM cte2
-INNER JOIN interest_metrics m
-	ON cte2.interest_id = m.interest_id AND (cte2.min_percent = m.percentile_ranking OR cte2.max_percent = m.percentile_ranking)
-GROUP BY interest_id
+	LIMIT 5)
+SELECT cte.interest_id, interest_name, interest_summary, std_percentile, m1.month_year AS min_month_year, min_percentile, m2.month_year AS max_month_year, max_percentile
+FROM cte
+INNER JOIN interest_map p
+	ON cte.interest_id = p.id
+INNER JOIN interest_metrics m1
+	ON cte.interest_id = m1.interest_id AND cte.min_percentile = m1.percentile_ranking
+INNER JOIN interest_metrics m2
+	ON cte.interest_id = m2.interest_id AND cte.max_percentile = m2.percentile_ranking
 ORDER BY std_percentile DESC;
 
--- 5. How would you describe our customers in this segment based off their composition and ranking values? What sort of products or services should we show to these customers and what should we avoid?
+WITH cte AS (
+	SELECT 
+		interest_id, 
+		ROUND(STD(percentile_ranking), 2) AS std_percentile,
+		MIN(percentile_ranking) AS min_percentile,
+		MAX(percentile_ranking) AS max_percentile
+	FROM interest_metrics_filtered
+	GROUP BY interest_id
+	ORDER BY std_percentile DESC
+	LIMIT 5)
+SELECT
+	cte.interest_id,
+    interest_name, 
+    month_year,
+    percentile_ranking,
+    CASE
+		WHEN percentile_ranking = min_percentile THEN 'min percentile'
+        WHEN percentile_ranking = max_percentile THEN 'max percentile'
+	END AS min_max_percentile
+FROM cte
+INNER JOIN interest_map p
+	ON cte.interest_id = p.id
+INNER JOIN interest_metrics m
+	ON cte.interest_id = m.interest_id 
+ORDER BY std_percentile DESC, month_year;
 
 -- D. Index Analysis --
 -- The index_value is a measure which can be used to reverse calculate the average composition for Fresh Segments’ clients.
 -- Average composition can be calculated by dividing the composition column by the index_value column rounded to 2 decimal places.
+
 -- 1. What is the top 10 interests by the average composition for each month?
 WITH cte AS(
 	SELECT *, ROUND(composition/index_value, 2) AS avg_composition,
@@ -269,7 +293,7 @@ WITH cte AS(
 		ROW_NUMBER() OVER(PARTITION BY month_year ORDER BY composition/index_value DESC) AS month_ranking
 	FROM interest_metrics),
 cte2 AS(
-	SELECT month_year, month_ranking, interest_id, interest_name, avg_composition
+	SELECT month_year, month_ranking, interest_id, interest_name, interest_summary, avg_composition
 	FROM cte
 	INNER JOIN interest_map m
 		ON cte.interest_id = m.id

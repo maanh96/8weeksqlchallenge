@@ -7,8 +7,6 @@ View full case study [here](https://8weeksqlchallenge.com/case-study-6/)
 ## Introduction
 Clique Bait is not like your regular online seafood store - the founder and CEO Danny, was also a part of a digital data analytics team and wanted to expand his knowledge into the seafood industry! In this case study - we are required to support Danny’s vision and analyse his dataset and come up with creative solutions to calculate funnel fallout rates for the Clique Bait online store.
 
-
-
 ## Datasets
 
 <img src='https://user-images.githubusercontent.com/58045173/188321344-2069c761-bfc5-4691-b208-235c845b24bd.png' width='600'>

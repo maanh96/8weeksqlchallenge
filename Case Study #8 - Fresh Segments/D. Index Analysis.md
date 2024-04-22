@@ -139,11 +139,9 @@ Result:
 | 2019-08-01 | Cosmetics and Beauty Shoppers | 2.73                  | 2.77               | Las Vegas Trip Planners: 2.82     | Las Vegas Trip Planners: 2.77     |
 
 ### 5. Provide a possible reason why the max average composition might change from month to month? Could it signal something is not quite right with the overall business model for Fresh Segments?
-``` sql
+As we've known, the average `composition` metric show the **percentage** of all Fresh Segments clients’ customer list interacted with a particular interest in a month. Hence a possible reason why the max average composition might change from month to month could be due to the expansion of the customer base, especially when the new customers have more diverse interests compare with the old base.
 
-```
-Result:
-
+That is to say, the fluctuation in the max average composition alone is not necessary signal something is not quite right with the overall business model for Fresh Segments. However, Fresh Segment should pay attention closely on the `composition` of each clients' customer list since the drop of this metric might indicate the effectiveness of the online ads is decreasing over time. 
 
 <br>
 

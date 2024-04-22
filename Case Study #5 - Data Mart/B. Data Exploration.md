@@ -20,14 +20,14 @@ WITH RECURSIVE week_numbers_cte(week_number) AS(
     SELECT week_number + 1
 	FROM week_numbers_cte
     WHERE week_number + 1 <= 52)
-SELECT GROUP_CONCAT(week_number) AS week_number_missing
+SELECT GROUP_CONCAT(week_number SEPARATOR ' ,') AS week_number_missing
 FROM week_numbers_cte
 WHERE week_number NOT IN (SELECT week_number FROM clean_weekly_sales);
 ```
 Result:
-| week_number_missing                                                        |
-| :------------------------------------------------------------------------- |
-| 1,2,3,4,5,6,7,8,9,10,11,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52 |
+| week_number_missing                                                                                   |
+| :---------------------------------------------------------------------------------------------------- |
+| 1 ,2 ,3 ,4 ,5 ,6 ,7 ,8 ,9 ,10 ,11 ,36 ,37 ,38 ,39 ,40 ,41 ,42 ,43 ,44 ,45 ,46 ,47 ,48 ,49 ,50 ,51 ,52 |
 
 ### 3. How many total transactions were there for each year in the dataset?
 ``` sql
@@ -184,7 +184,7 @@ Besides unknown segment, Retirees `age_band` and Families `demographic` contribu
 
 ### 9. Can we use the <code class="language-plaintext highlighter-rouge">avg_transaction</code> column to find the average transaction size for each year for Retail vs Shopify? If not - how would you calculate it instead?
 
-We cannot use the `avg_transaction` to find the average transaction size for each year since the the count of unique purchases made each week are different from each other. Instead, we need to find the sum of `sales` divided by the sum of `transactions`. 
+We cannot use the `avg_transaction` to find the average transaction size for each year since the the count of unique purchases made each week are different from each other. Instead, we need to calculate the sum of `sales` then divide them by the sum of `transactions`. 
 
 ``` sql
 SELECT

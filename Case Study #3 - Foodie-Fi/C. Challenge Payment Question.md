@@ -31,9 +31,9 @@ SELECT
  WHERE plan_id IN (1, 2, 3) AND start_date <= '2020-12-31';
  ```
 
-In this case, we need to generate additional rows for `payment_date`, after research I found one solution is using [Recursive Common Table Expressions](https://dev.mysql.com/doc/refman/8.0/en/with.html#common-table-expressions-recursive). 
+In this case, we need to generate additional rows for `payment_date`, one solution is using [Recursive Common Table Expressions](https://dev.mysql.com/doc/refman/8.0/en/with.html#common-table-expressions-recursive). 
 
-Another point to note is case that upgraded from basic to pro monthly/annual will start immediately and amount will reduced by the current paid amount in that month. For this requirement, we will use `CASE` to check if the current payment date is within a month from the previous payment date.
+Note that for case upgrading from basic to pro monthly/annual, the new plan will start immediately and the amount will reduced by the current paid amount in that month. So for this requirement, we will use `CASE` to check if the current payment date is within a month from the previous payment date.
 ```sql
 -- create 2020 payments table using recursive cte to generate all payment date based on plan type and last_date
 -- calculate paid amount with note that case upgrade from basic to pro monthly/annual will start immediately and amount will reduced by the current paid amount in that month
@@ -107,7 +107,7 @@ Result:
 | 19          | 2       | pro monthly   | 2020-07-29   | 19.90  | 2             |
 | 19          | 3       | pro annual    | 2020-08-29   | 199.00 | 3             |
 
-Great, it's all correct!!!
+Great, all are correct!!!
 
 <br>
 

@@ -110,6 +110,7 @@ LIMIT 3;
     -- left join view_add_cte with purchase_cte when cart_added IS NOT NULL
     -- sum the viewd, cart_added, purchased group by product_id to get total number
     -- sum the case when cart_added = 1 and purchased IS NULL to get total_abandoned
+    
 DROP TABLE IF EXISTS products;
 CREATE TABLE products
 WITH view_add_cte AS(
@@ -204,6 +205,7 @@ FROM products;
 	-- impression: count of ad impressions for each visit
 	-- click: count of ad clicks for each visit
 	-- (Optional column) cart_products: a comma separated text value with products added to the cart sorted by the order they were added to the cart (hint: use the sequence_number)
+
 DROP TABLE IF EXISTS visits;
 CREATE TABLE visits
 SELECT
@@ -226,5 +228,105 @@ LEFT JOIN page_hierarchy p
 	ON e.page_id = p.page_id AND event_type = 2 AND product_id IS NOT NULL
 GROUP BY user_id, visit_id;
 SELECT * FROM visits;
+
+-- Identifying users who have received impressions during each campaign period and comparing each metric with other users who did not have an impression event
+WITH cte AS (
+	SELECT 
+		user_id,
+		campaign_name,
+		CASE
+			WHEN SUM(impression) > 0 THEN 'impress' ELSE 'no impress'
+		END AS impress_status,
+        COUNT(*) AS total_visit, 
+		SUM(page_views)/COUNT(*) AS page_views_per_visit, 
+		SUM(cart_adds)/COUNT(*) AS cart_adds_per_visit, 
+		SUM(purchase)/COUNT(*) * 100 AS purchase_rate
+	FROM visits
+    WHERE campaign_name IS NOT NULL
+	GROUP BY user_id, campaign_name)
+SELECT
+	campaign_name, 
+    impress_status, 
+    ROUND(AVG(total_visit), 2) AS avg_visit, 
+    ROUND(AVG(page_views_per_visit), 2) AS avg_page_views_per_visit, 
+    ROUND(AVG(cart_adds_per_visit), 2) AS avg_cart_adds_per_visit, 
+    ROUND(AVG(purchase_rate), 2) AS avg_purchase_rate
+FROM cte
+GROUP BY campaign_name, impress_status
+ORDER BY campaign_name;
+
+-- Does clicking on an impression lead to higher purchase rates?
+SELECT
+	ROUND(SUM(CASE WHEN purchase = 1 AND click = 1 THEN 1 END)/SUM(CASE WHEN click = 1 THEN 1 END) * 100, 2) AS purchase_rates_with_click,
+    ROUND(SUM(CASE WHEN purchase = 1 AND click = 0 THEN 1 END)/SUM(CASE WHEN click = 0 THEN 1 END) * 100, 2) AS purchase_rates_no_click
+FROM visits;
+
+-- What is the uplift in purchase rate when comparing users who click on a campaign impression versus users who do not receive an impression? What if we compare them with users who just an impression but do not click?
+WITH cte AS (
+	SELECT 
+		user_id,
+		campaign_name,
+		CASE
+			WHEN SUM(click) > 0 THEN 'click'
+            WHEN SUM(impression) > 0 THEN 'impress no click'
+            ELSE 'no impress'
+		END AS campaign_status,
+		SUM(purchase)/COUNT(*) * 100 AS purchase_rate
+	FROM visits
+    WHERE campaign_name IS NOT NULL
+	GROUP BY user_id, campaign_name)
+SELECT
+	campaign_name, 
+    campaign_status, 
+    ROUND(AVG(purchase_rate), 2) AS avg_purchase_rate
+FROM cte
+GROUP BY campaign_name, campaign_status
+ORDER BY campaign_name;
+
+-- What metrics can you use to quantify the success or failure of each campaign compared to each other?
+WITH cte AS (
+	SELECT 
+		user_id,
+		campaign_name,
+		CASE
+			WHEN SUM(click) > 0 THEN 'click'
+            WHEN SUM(impression) > 0 THEN 'impress'
+            ELSE 'no impress'
+		END AS campaign_status,
+		SUM(purchase)/COUNT(*) * 100 AS purchase_rate
+	FROM visits
+    WHERE campaign_name IS NOT NULL
+	GROUP BY user_id, campaign_name)
+SELECT
+	campaign_name, 
+    campaign_status,
+    COUNT(*),
+    ROUND(AVG(purchase_rate), 2) AS avg_purchase_rate
+FROM cte
+GROUP BY campaign_name, campaign_status
+ORDER BY campaign_name;
+
+SELECT
+    page_name AS product,
+	CASE
+		WHEN product_id >= CAST(SUBSTRING_INDEX(products, '-', 1) AS UNSIGNED) AND product_id <= CAST(SUBSTRING_INDEX(products, '-', -1) AS UNSIGNED) THEN v.campaign_name
+    END AS in_campaign,
+    SUM(purchase) AS total_purchase
+FROM visits v
+INNER JOIN events e
+	ON v.visit_id = e.visit_id AND event_type = 2
+INNER JOIN page_hierarchy p
+	ON e.page_id = p.page_id
+INNER JOIN campaign_identifier c
+	ON v.campaign_name = c.campaign_name
+GROUP BY product_id, in_campaign
+ORDER BY product_id
+;
+
+SELECT DISTINCT page_id FROM events WHERE event_type = 1
+
+
+
+
 
 

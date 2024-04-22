@@ -63,7 +63,7 @@ WITH RECURSIVE week_numbers_cte(week_number) AS(
     SELECT week_number + 1
 	FROM week_numbers_cte
     WHERE week_number + 1 <= 52)
-SELECT GROUP_CONCAT(week_number) AS week_number_missing
+SELECT GROUP_CONCAT(week_number SEPARATOR ' ,') AS week_number_missing
 FROM week_numbers_cte
 WHERE week_number NOT IN (SELECT week_number FROM clean_weekly_sales);
 
@@ -136,6 +136,7 @@ ORDER BY calendar_year;
 -- Taking the week_date value of 2020-06-15 as the baseline week where the Data Mart sustainable packaging changes came into effect.
 -- We would include all week_date values for 2020-06-15 as the start of the period after the change and the previous week_date values would be before
 -- Using this analysis approach - answer the following questions:
+
 -- 1. What is the total sales for the 4 weeks before and after 2020-06-15? What is the growth or reduction rate in actual values and percentage of sales?
 WITH cte AS(
 	SELECT *,
@@ -190,8 +191,8 @@ ORDER BY calendar_year;
 WITH cte AS(
 	SELECT *,
 		CASE
-			WHEN week_number < WEEK('2020-06-15') AND week_number >= WEEK('2020-06-15') - 12 THEN 'before'
-			WHEN week_number >= WEEK('2020-06-15') AND week_number < WEEK('2020-06-15') + 12 THEN 'after'
+			WHEN week_date < '2020-06-15' AND week_date >= SUBDATE('2020-06-15', INTERVAL 12 WEEK) THEN 'before'
+			WHEN week_date >= '2020-06-15' AND week_date < ADDDATE('2020-06-15', INTERVAL 12 WEEK) THEN 'after'
 		END AS period
 	FROM clean_weekly_sales)
 SELECT
@@ -202,15 +203,15 @@ SELECT
     SUM(CASE WHEN period = 'after' THEN sales END) - SUM(CASE WHEN period = 'before' THEN sales END) AS value_diff,
 	ROUND((SUM(CASE WHEN period = 'after' THEN sales END) - SUM(CASE WHEN period = 'before' THEN sales END))/SUM(CASE WHEN period = 'before' THEN sales END)*100, 2) AS percent_diff
 FROM cte
-GROUP BY region, calendar_year
-ORDER BY region;
+GROUP BY region
+ORDER BY percent_diff;
 
 	-- platform
 WITH cte AS(
 	SELECT *,
 		CASE
-			WHEN week_number < WEEK('2020-06-15') AND week_number >= WEEK('2020-06-15') - 12 THEN 'before'
-			WHEN week_number >= WEEK('2020-06-15') AND week_number < WEEK('2020-06-15') + 12 THEN 'after'
+			WHEN week_date < '2020-06-15' AND week_date >= SUBDATE('2020-06-15', INTERVAL 12 WEEK) THEN 'before'
+			WHEN week_date >= '2020-06-15' AND week_date < ADDDATE('2020-06-15', INTERVAL 12 WEEK) THEN 'after'
 		END AS period
 	FROM clean_weekly_sales)
 SELECT
@@ -221,15 +222,15 @@ SELECT
     SUM(CASE WHEN period = 'after' THEN sales END) - SUM(CASE WHEN period = 'before' THEN sales END) AS value_diff,
 	ROUND((SUM(CASE WHEN period = 'after' THEN sales END) - SUM(CASE WHEN period = 'before' THEN sales END))/SUM(CASE WHEN period = 'before' THEN sales END)*100, 2) AS percent_diff
 FROM cte
-GROUP BY platform, calendar_year
-ORDER BY platform;
+GROUP BY platform
+ORDER BY percent_diff;
 
 	-- age_band
 WITH cte AS(
 	SELECT *,
 		CASE
-			WHEN week_number < WEEK('2020-06-15') AND week_number >= WEEK('2020-06-15') - 12 THEN 'before'
-			WHEN week_number >= WEEK('2020-06-15') AND week_number < WEEK('2020-06-15') + 12 THEN 'after'
+			WHEN week_date < '2020-06-15' AND week_date >= SUBDATE('2020-06-15', INTERVAL 12 WEEK) THEN 'before'
+			WHEN week_date >= '2020-06-15' AND week_date < ADDDATE('2020-06-15', INTERVAL 12 WEEK) THEN 'after'
 		END AS period
 	FROM clean_weekly_sales)
 SELECT
@@ -240,15 +241,15 @@ SELECT
     SUM(CASE WHEN period = 'after' THEN sales END) - SUM(CASE WHEN period = 'before' THEN sales END) AS value_diff,
 	ROUND((SUM(CASE WHEN period = 'after' THEN sales END) - SUM(CASE WHEN period = 'before' THEN sales END))/SUM(CASE WHEN period = 'before' THEN sales END)*100, 2) AS percent_diff
 FROM cte
-GROUP BY age_band, calendar_year
-ORDER BY age_band;
+GROUP BY age_band
+ORDER BY percent_diff;
 
 	-- demographic
 WITH cte AS(
 	SELECT *,
 		CASE
-			WHEN week_number < WEEK('2020-06-15') AND week_number >= WEEK('2020-06-15') - 12 THEN 'before'
-			WHEN week_number >= WEEK('2020-06-15') AND week_number < WEEK('2020-06-15') + 12 THEN 'after'
+			WHEN week_date < '2020-06-15' AND week_date >= SUBDATE('2020-06-15', INTERVAL 12 WEEK) THEN 'before'
+			WHEN week_date >= '2020-06-15' AND week_date < ADDDATE('2020-06-15', INTERVAL 12 WEEK) THEN 'after'
 		END AS period
 	FROM clean_weekly_sales)
 SELECT
@@ -259,15 +260,15 @@ SELECT
     SUM(CASE WHEN period = 'after' THEN sales END) - SUM(CASE WHEN period = 'before' THEN sales END) AS value_diff,
 	ROUND((SUM(CASE WHEN period = 'after' THEN sales END) - SUM(CASE WHEN period = 'before' THEN sales END))/SUM(CASE WHEN period = 'before' THEN sales END)*100, 2) AS percent_diff
 FROM cte
-GROUP BY demographic, calendar_year
-ORDER BY demographic;
+GROUP BY demographic
+ORDER BY percent_diff;
     
 	-- customer_type
 WITH cte AS(
 	SELECT *,
 		CASE
-			WHEN week_number < WEEK('2020-06-15') AND week_number >= WEEK('2020-06-15') - 12 THEN 'before'
-			WHEN week_number >= WEEK('2020-06-15') AND week_number < WEEK('2020-06-15') + 12 THEN 'after'
+			WHEN week_date < '2020-06-15' AND week_date >= SUBDATE('2020-06-15', INTERVAL 12 WEEK) THEN 'before'
+			WHEN week_date >= '2020-06-15' AND week_date < ADDDATE('2020-06-15', INTERVAL 12 WEEK) THEN 'after'
 		END AS period
 	FROM clean_weekly_sales)
 SELECT
@@ -278,5 +279,5 @@ SELECT
     SUM(CASE WHEN period = 'after' THEN sales END) - SUM(CASE WHEN period = 'before' THEN sales END) AS value_diff,
 	ROUND((SUM(CASE WHEN period = 'after' THEN sales END) - SUM(CASE WHEN period = 'before' THEN sales END))/SUM(CASE WHEN period = 'before' THEN sales END)*100, 2) AS percent_diff
 FROM cte
-GROUP BY customer_type, calendar_year
-ORDER BY customer_type;
+GROUP BY customer_type
+ORDER BY percent_diff;

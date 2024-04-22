@@ -17,7 +17,7 @@
   <li><strong>(Optional column)</strong> <code class="language-plaintext highlighter-rouge">cart_products</code>: a comma separated text value with products added to the cart sorted by the order they were added to the cart (hint: use the <code class="language-plaintext highlighter-rouge">sequence_number</code>)</li>
 </ul>
 
-<p>Use the subsequent dataset to generate at least 5 insights for the Clique Bait team - bonus: prepare a single A4 infographic that the team can use for their management reporting sessions, be sure to emphasise the most important points from your findings.</p>
+<p>Use the subsequent dataset to generate at least 5 insights for the Clique Bait team.</p>
 
 <p>Some ideas you might want to investigate further include:</p>
 
@@ -25,7 +25,7 @@
   <li>Identifying users who have received impressions during each campaign period and comparing each metric with other users who did not have an impression event</li>
   <li>Does clicking on an impression lead to higher purchase rates?</li>
   <li>What is the uplift in purchase rate when comparing users who click on a campaign impression versus users who do not receive an impression? What if we compare them with users who just an impression but do not click?</li>
-  <li>What metrics can you use to quantify the success or failure of each campaign compared to eachother?</li>
+  <li>What metrics can you use to quantify the success or failure of each campaign compared to each other?</li>
 </ul>
 
 ***
@@ -73,6 +73,97 @@ Result:
 | 2       | c5c0ee   | 2020-01-18 10:35:23 | 1          |           |          | 25% Off - Living The Lux Life     |            |       |                                                                                       |
 | 2       | d58cbd   | 2020-01-18 23:40:55 | 8          | 4         |          | 25% Off - Living The Lux Life     |            |       | Kingfish, Tuna, Abalone, Crab                                                         |
 | ...     | ...      | ...                 | ...        | ....      | ...      | ...                               | ...        | ...   | ...                                                                                   | ... |
+
+### Identifying users who have received impressions during each campaign period and comparing each metric with other users who did not have an impression event
+```sql
+WITH cte AS (
+	SELECT 
+		user_id,
+		campaign_name,
+		CASE
+			WHEN SUM(impression) > 0 THEN 'impress' ELSE 'no impress'
+		END AS impress_status,
+        COUNT(*) AS total_visit, 
+		SUM(page_views)/COUNT(*) AS page_views_per_visit, 
+		SUM(cart_adds)/COUNT(*) AS cart_adds_per_visit, 
+		SUM(purchase)/COUNT(*) * 100 AS purchase_rate
+	FROM visits
+    WHERE campaign_name IS NOT NULL
+	GROUP BY user_id, campaign_name)
+SELECT
+	campaign_name, 
+    impress_status, 
+    ROUND(AVG(total_visit), 2) AS avg_visit, 
+    ROUND(AVG(page_views_per_visit), 2) AS avg_page_views_per_visit, 
+    ROUND(AVG(cart_adds_per_visit), 2) AS avg_cart_adds_per_visit, 
+    ROUND(AVG(purchase_rate), 2) AS avg_purchase_rate
+FROM cte
+GROUP BY campaign_name, impress_status
+ORDER BY campaign_name;
+```
+Result:
+| campaign_name                     | impress_status | avg_visit | avg_page_views_per_visit | avg_cart_adds_per_visit | avg_purchase_rate |
+| :-------------------------------- | :------------- | :-------- | :----------------------- | :---------------------- | :---------------- |
+| 25% Off - Living The Lux Life     | impress        | 2.73      | 7.47                     | 3.38                    | 62.09             |
+| 25% Off - Living The Lux Life     | no impress     | 2.26      | 4.07                     | 1.15                    | 30.80             |
+| BOGOF - Fishing For Compliments   | impress        | 2.78      | 7.29                     | 3.40                    | 63.42             |
+| BOGOF - Fishing For Compliments   | no impress     | 2.18      | 4.13                     | 1.10                    | 30.68             |
+| Half Off - Treat Your Shellf(ish) | impress        | 5.71      | 6.28                     | 2.64                    | 54.47             |
+| Half Off - Treat Your Shellf(ish) | no impress     | 3.90      | 3.96                     | 1.18                    | 28.52             |
+
+In general, users who have received impressions during campaign visit more often, view more page, add to cart more product and had almost double purchase rates.
+
+### Does clicking on an impression lead to higher purchase rates?
+```sql
+SELECT
+	ROUND(SUM(CASE WHEN purchase = 1 AND click = 1 THEN 1 END)/SUM(CASE WHEN click = 1 THEN 1 END) * 100, 2) AS purchase_rates_with_click,
+    ROUND(SUM(CASE WHEN purchase = 1 AND click = 0 THEN 1 END)/SUM(CASE WHEN click = 0 THEN 1 END) * 100, 2) AS purchase_rates_no_click
+FROM visits;
+```
+Result:
+| purchase_rates_with_click | purchase_rates_no_click |
+| :------------------------ | :---------------------- |
+| 88.89                     | 40.29                   |
+
+The query result shows that users who clicked on an impression had a significantly higher purchase rate (88.89%) compared to those who did not click on an impression (40.29%).
+
+### What is the uplift in purchase rate when comparing users who click on a campaign impression versus users who do not receive an impression? What if we compare them with users who just an impression but do not click?
+```sql
+WITH cte AS (
+	SELECT 
+		user_id,
+		campaign_name,
+		CASE
+			WHEN SUM(click) > 0 THEN 'click'
+            WHEN SUM(impression) > 0 THEN 'impress no click'
+            ELSE 'no impress'
+		END AS campaign_status,
+		SUM(purchase)/COUNT(*) * 100 AS purchase_rate
+	FROM visits
+    WHERE campaign_name IS NOT NULL
+	GROUP BY user_id, campaign_name)
+SELECT
+	campaign_name, 
+    campaign_status, 
+    ROUND(AVG(purchase_rate), 2) AS avg_purchase_rate
+FROM cte
+GROUP BY campaign_name, campaign_status
+ORDER BY campaign_name;
+```
+Result:
+| campaign_name                     | campaign_status | avg_purchase_rate |
+| :-------------------------------- | :-------------- | :---------------- |
+| 25% Off - Living The Lux Life     | click           | 62.32             |
+| 25% Off - Living The Lux Life     | impress no click         | 61.25             |
+| 25% Off - Living The Lux Life     | no impress      | 30.80             |
+| BOGOF - Fishing For Compliments   | click           | 64.00             |
+| BOGOF - Fishing For Compliments   | impress no click         | 60.19             |
+| BOGOF - Fishing For Compliments   | no impress      | 30.68             |
+| Half Off - Treat Your Shellf(ish) | click           | 55.16             |
+| Half Off - Treat Your Shellf(ish) | impress no click         | 49.78             |
+| Half Off - Treat Your Shellf(ish) | no impress      | 28.52             |
+
+People who click on a campaign impression have almost double higher purchase rate compare with users who do not receive an impression and just lightly higher purchase rate compare with users who have an impression but do not click.
 
 ***
 ~ This is the end of Case Study 6 ~

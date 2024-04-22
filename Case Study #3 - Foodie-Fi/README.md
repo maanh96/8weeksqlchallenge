@@ -1,16 +1,17 @@
 # Case Study #3 - Foodie-Fi
 <img src='https://8weeksqlchallenge.com/images/case-study-designs/3.png' width='400'>
 
-View full case study [here](https://8weeksqlchallenge.com/case-study-3/)
+View the full case study [here](https://8weeksqlchallenge.com/case-study-3/)
 
 ## Introduction
-Danny and his friends launched his new startup Foodie-Fi, a new streaming service that only had food related content, in 2020 and started selling monthly and annual subscriptions, giving their customers unlimited on-demand access to exclusive food videos from around the world. We will help him querying relevant data and create new tables to answer important business questions.
+Danny and his friends launched his new startup Foodie-Fi, a new streaming service that only had food-related content, in 2020 and started selling monthly and annual subscriptions, giving their customers unlimited on-demand access to exclusive food videos from around the world. We will help him query relevant data and create new tables to answer important business questions.
 
 ## Datasets
 <img src='https://8weeksqlchallenge.com/images/case-study-3-erd.png'>
 
-Dataset for this case study include:
-* `plans`: Customers can sign up to an initial 7 day free trial will automatically continue with the pro monthly subscription plan unless they cancel, downgrade to basic or upgrade to an annual pro plan at any point during the trial. When customers cancel their Foodie-Fi service - they will have a churn plan record with a null price but their plan will continue until the end of the billing period.
+The dataset for this case study includes:
+
+* `plans`: Customers can sign up for an initial 7-day free trial which will automatically continue with the pro monthly subscription plan unless they cancel, downgrade to basic or upgrade to an annual pro plan at any point during the trial. When customers cancel their Foodie-Fi service - they will have a churn plan record with a null price but their plan will continue until the end of the billing period.
 <center>
 
 | plan_id | plan_name     | price |
@@ -22,9 +23,9 @@ Dataset for this case study include:
 | 4       | churn         | null  |
 </center>
 
-* `subscriptions`: including `customer_id`, `plan_id` and `start_date`. If customers downgrade from a pro plan or cancel their subscription - the higher plan will remain in place until the period is over - the `start_date` in the subscriptions table will reflect the date that the actual plan changes. When customers upgrade their account from a basic plan to a pro or annual pro plan - the higher plan will take effect straightaway. When customers churn - they will keep their access until the end of their current billing period but the `start_date` will be technically the day they decided to cancel their service. 
+* `subscriptions`: including `customer_id`, `plan_id` and `start_date`. If customers downgrade from a pro plan or cancel their subscription - the higher plan will remain in place until the period is over - the `start_date` in the subscriptions table will reflect the date that the actual plan changes. When customers upgrade their account from a basic plan to a pro or annual pro plan - the higher plan will take effect straight away. When customers churn - they will keep their access until the end of their current billing period but the `start_date` will be technically the day they decide to cancel their service. 
 
-View SQL schema file [here](./Schema.sql) 
+View the SQL schema file [here](./Schema.sql) 
 
 ## Case Study Questions
 
@@ -67,4 +68,4 @@ The Foodie-Fi team wants you to create a new <code class="language-plaintext hig
 
 <br>
 
-View full SQL query file [here](./Query.sql).
+View the full SQL query file [here](./Query.sql).

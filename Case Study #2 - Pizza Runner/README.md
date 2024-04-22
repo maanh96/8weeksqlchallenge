@@ -98,7 +98,6 @@ Before writing SQL queries we will need to clean the data in the `customer_order
 
 ### E. Bonus Questions - [Solution](./D.%20Pricing%20and%20Ratings%20%26%20E.%20Bonus%20Questions.md#e-bonus-questions)
 If Danny wants to expand his range of pizzas - how would this impact the existing data design? Write an <code>INSERT</code> statement to demonstrate what would happen if a new <code>Supreme</code> pizza with all the toppings was added to the Pizza Runner menu?
-
 <br>
 
 View full SQL query file [here](./Query.sql).

@@ -7,6 +7,7 @@
 * How many times was each product added to cart?
 * How many times was each product added to a cart but not purchased (abandoned)?
 * How many times was each product purchased?
+  
 ``` sql
 -- from events create view_add_cte that:
     -- inner join page_hierarchy to get page_name (product name)

@@ -78,7 +78,7 @@ Result:
 | 2019          | 6883386397   | 6862646103  | -20740294  | -0.30        |
 | 2020          | 7126273147   | 6973947753  | -152325394 | -2.14        |
 
-Looking at the results, we can see that even though the downtrend between the two periods already started in 2019, changing to sustainable packaging seems to make the negative impact significantly worse from -0.30% to -2.14%.
+Based on the table, it appears that the downward trend in sales between the two periods already started in 2019. However, the decline is significantly worse in 2020, which might due to the shift to sustainable packaging.
 
 <br>
 

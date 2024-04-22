@@ -1,21 +1,21 @@
 # Case Study #1 - Danny's Diner
 <img src="https://8weeksqlchallenge.com/images/case-study-designs/1.png" width="400">
 
-View full case study [here](https://8weeksqlchallenge.com/case-study-1/)
+View the full case study [here](https://8weeksqlchallenge.com/case-study-1/)
 
 ## Introduction
-Danny opens up a cute little restaurant that sells his 3 favorite foods: sushi, curry and ramen. He is in need of our assistance to  answer a few simple questions about his customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favorite.
+Danny opens up a cute little restaurant that sells his 3 favorite foods: sushi, curry and ramen. He needs our assistance to answer a few simple questions about his customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favorite.
 
 ## Datasets
 
 ![Danny's Diner](https://user-images.githubusercontent.com/58045173/188302008-3e0c21b2-c683-41a7-b95f-bf6aa1c30a87.png)
 
-Dataset for this case study include:
-* `sales`: captures all `customer_id` level purchases with an corresponding `order_date` and `product_id` information for when and what menu items were ordered
+The dataset for this case study includes:
+* `sales`: captures all `customer_id` level purchases with a corresponding `order_date` and `product_id` information for when and what menu items were ordered
 * `menu`: maps the `product_id` to the actual `product_name` and price of each menu item
 * `members`: captures the `join_date` when a `customer_id` joined the beta version of the Danny’s Diner loyalty program
 
-View SQL schema file [here](./Schema.sql) 
+View the SQL schema file [here](./Schema.sql) 
 
 ## Case Study Questions
 Each of the following case study questions can be answered using a single SQL statement:

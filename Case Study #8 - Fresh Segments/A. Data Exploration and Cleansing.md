@@ -86,7 +86,7 @@ Result:
 |        |       |            |             | 7.73        | 2.82        | 48      | 95.98              |  |  |  |  |
 | ...    |
 
-There are 1194 null values, which are accounted for 8.37% of total rows and appear in the `_month`, `_year`, `month_year` and `interest_id` columns. In our case this information is important and without it, the records are not much useful to use so we will delete these rows from our table.
+There are 1194 null values, which are accounted for 8.37% of total rows and appear in the `_month`, `_year`, `month_year` and `interest_id` columns. In our case this information is crucial and without it, the records are not much useful so we will delete these rows from our table.
 
 ```sql
 DELETE FROM interest_metrics WHERE month_year IS NULL;
@@ -94,6 +94,8 @@ DELETE FROM interest_metrics WHERE month_year IS NULL;
 
 ### 4. How many interest_id values exist in the fresh_segments.interest_metrics table but not in the fresh_segments.interest_map table? What about the other way around?
 ``` sql
+-- count number of interest_id in interest_metrics but not in interest_map
+
 SELECT COUNT(*) AS not_in_map
 FROM interest_metrics e
 LEFT JOIN interest_map m
@@ -106,6 +108,8 @@ Result:
 | 0          |
 
 ```sql
+-- count number of interest_id in interest_map but not in interest_metrics
+
 SELECT COUNT(*) AS not_in_metrics
 FROM interest_metrics e
 RIGHT JOIN interest_map m
@@ -128,7 +132,7 @@ Result:
 | 1209          | 1209     |
 
 ### 6. What sort of table join should we perform for our analysis and why? Check your logic by checking the rows where interest_id = 21246 in your joined output and include all columns from fresh_segments.interest_metrics and all columns from fresh_segments.interest_map except from the id column.
-From previous question, we know that there are 7 id exist in `interest_map` but not in `interest_metrics`. Since our main data is `interest_metrics` table, we could use INNER JOIN / LEFT JOIN with `interest_metrics` as base or INNER  / RIGHT JOIN with `interest_map` as base. I prefer using INNER JOIN since it work well with both table as base.
+From previous question, we know that there are 7 id exist in `interest_map` but not in `interest_metrics`. Since our main data is `interest_metrics` table, we could use INNER JOIN / LEFT JOIN with `interest_metrics` as base or INNER  / RIGHT JOIN with `interest_map` as base.
 
 ``` sql
 SELECT e.*, interest_name, interest_summary, created_at, last_modified
@@ -151,10 +155,10 @@ Result:
 | 3      | 2019  | 2019-03-01 | 21246       | 1.75        | 0.67        | 1123    | 1.14               | Readers of El Salvadoran Content | People reading news from El Salvadoran media sources. | 2018-06-11 17:50:04 | 2018-06-11 17:50:04 |
 | 4      | 2019  | 2019-04-01 | 21246       | 1.58        | 0.63        | 1092    | 0.64               | Readers of El Salvadoran Content | People reading news from El Salvadoran media sources. | 2018-06-11 17:50:04 | 2018-06-11 17:50:04 |
 
-Note that for original data, there is a row where `interest_id` = 21246 and the month_year is `NULL` but we already dropped it. Netherless, I find it is unclear regarding why the question asks us to filter rows of id 21246 to check the join logic.
-
 ### 7. Are there any records in your joined table where the month_year value is before the created_at value from the fresh_segments.interest_map table? Do you think these values are valid and why?
 ``` sql
+-- select records with month_year before created_at
+
 SELECT month_year, created_at
 FROM interest_metrics e
 INNER JOIN interest_map m
@@ -172,6 +176,8 @@ Result:
 | ...        |
 
 ```sql
+-- select records with month of month_year < month of created_at
+
 SELECT month_year, created_at
 FROM interest_metrics e
 INNER JOIN interest_map m
@@ -183,7 +189,7 @@ Result:
 | :--------- | :--------- |
 | &nbsp;     |
 
-There are records where the month_year value is before the created_at value but look at the second query's result, the two values in these records are all in the same month. Note that we are the one who set the `month_year` column to be a date data type with the start of the month at first, this means that these records are valid.
+There are records with `month_year` values before `created_at` values but they are still valid since they are all within the same month and the `month_year` column was set to be the first day of the month.
 
 <br>
 
