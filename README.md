@@ -15,7 +15,7 @@ Note: Solutions are coded in **MySQL 8.0**.
 [<img src='https://8weeksqlchallenge.com/images/case-study-designs/1.png' width='23%'>](./Case%20Study%20%231%20-%20Danny's%20Diner)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/2.png' width='23%'>](./Case%20Study%20%232%20-%20Pizza%20Runner)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/3.png' width='23%'>](./Case%20Study%20%233%20-%20Foodie-Fi)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/4.png' width='23%'>](./Case%20Study%20%234%20-%20Data%20Bank)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/5.png'  width='23%'>](./Case%20Study%20%235%20-%20Data%20Mart)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/6.png' width='23%'>](./Case%20Study%20%236%20-%20Clique%20Bait)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/7.png' width='23%'>](./Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co)[<img src='https://8weeksqlchallenge.com/images/case-study-designs/8.png' width='23%'>](./Case%20Study%20%238%20-%20Fresh%20Segments)
     
 
-### 🍜 [Case Study #1 - Danny's Diner](./Case%20Study%20#1%20-%20Danny's%20Diner/) 
+### 🍜 [Case Study #1 - Danny's Diner](./Case%20Study%20%231%20-%20Danny's%20Diner) 
 Using the sales and customers dataset of a restaurant to learn about their customers' visiting patterns, how much money they’ve spent and which menu items are their favorite.  
 
 Notable functions used include:
@@ -24,7 +24,7 @@ Notable functions used include:
 * Other functions: `INNER JOIN`, `LEFT JOIN`, `SUM()`, `COUNT()`
 <br>
 
-### 🍕 [Case Study #2 - Pizza Runner](./Case%20Study%20#2%20-%20Pizza%20Runner/)
+### 🍕 [Case Study #2 - Pizza Runner](./Case%20Study%20%232%20-%20Pizza%20Runner)
 Analyze pizza restaurant's orders to optimize their delivery and operations. 
 
 Notable functions used include:
@@ -36,7 +36,7 @@ Notable functions used include:
 * Other functions used: `INNER JOIN`, `LEFT JOIN`, `AVG()`, `MIN()`, `MAX()`, `HOUR()`, `WEEK()`
 <br>
 
-### 🥑 [Case Study #3 - Foodie-Fi](./Case%20Study%20%233%20-%20Foodie-Fi/)
+### 🥑 [Case Study #3 - Foodie-Fi](./Case%20Study%20%233%20-%20Foodie-Fi)
 Working on a dataset of a streaming service company to gain insight into their customers' payment and subscription journey. 
 
 Notable functions used include:
